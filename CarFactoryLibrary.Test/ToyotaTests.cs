@@ -73,6 +73,22 @@ namespace CarFactoryLibrary.Test
             Assert.True(acutalOutput >= 2);
         }
 
+        [Theory]
+        [InlineData(20,20,1)]
+        [InlineData(5,20,5)]
+        [InlineData(5,10,2)]
+        public void TimeToCoverDistance_UseInputs_checkOutput(double velocity, double distance, double time)
+        {
+            // Arrange
+            Toyota toyota = new Toyota() { velocity = velocity, drivingMode = DrivingMode.Forward };
+
+
+            // Act
+            double actualTime = toyota.TimeToCoverDistance(distance);
+
+            // Assert
+            Assert.Equal(time,actualTime);
+        }
 
         [Fact]
         public void GetMyCar_AskForCopy_SameRefrence()
